@@ -1,0 +1,6 @@
+-d ../docs
+-windowtitle 'SimJava v2.0 API Specification'
+-doctitle '<b>SimJava</b> v2.0 API Specification'
+-header '<b>SimJava </b><br><font size="-1">v2.0</font>'
+-bottom 'The University of Edinburgh, 2002'
+-sourcepath .

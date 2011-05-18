@@ -1,0 +1,96 @@
+############################################################
+#                                                          #
+#                    SIMULATION REPORT                     #
+#                                                          #
+############################################################
+
+Version: SimJava 2.0
+
+Simulation date:         July 15, 2002
+Simulation start time:   6:29:20 PM BST
+Simulation end time:     6:29:41 PM BST
+
+############################################################
+#            Overall simulation run information            #
+############################################################
+
+Total simulated time:    2053061.1181056635
+Total transient time:    500156.3868337512
+Total steady state time: 1552904.7312719123
+Transient condition:     100000.0 units of elapsed simulated time
+Termination condition:   Confidence interval accuracy for Utilisation of Disk1
+Output analysis method:  Independent replications
+Confidence level:        0.95
+Replications performed:  5
+
+############################################################
+#       Total measurements and confidence intervals        #
+############################################################
+
+------------------------ Processor -------------------------
+
+- Throughput
+
+Total mean:          0.006675847638349703
+Interval low bound:  0.006423692881999936
+Interval high bound: 0.006928002394699471
+Interval half width: 2.5215475634976763E-4
+Accuracy ratio:      0.03777119700893908
+Mean variance:       8.24814279284332E-9
+Mean std deviation:  9.081928645856738E-5
+Average event count: 2073.0
+
+- Residence time
+
+Total mean:          260.601380171245
+Interval low bound:  236.31858956463924
+Interval high bound: 284.8841707778508
+Interval half width: 24.282790606605772
+Accuracy ratio:      0.09317982349383255
+Mean variance:       76.49253105883881
+Mean std deviation:  8.746000860898587
+Total maximum:       1195.1970705006388
+Total minimum:       79.45314914773917
+
+- Thread use
+
+Total mean:          2.1047246711874825
+Interval low bound:  2.1015619127667695
+Interval high bound: 2.1078874296081955
+Interval half width: 0.0031627584207130077
+Accuracy ratio:      0.00150269461084826
+Mean variance:       1.29763898061453E-6
+Mean std deviation:  0.00113913957907472
+Total maximum:       3.0
+Total minimum:       1.0
+Total average exceedence proportions:
+    0.0 < Thread use <= 1.0 : 0.14547025773919364
+    1.0 < Thread use <= 2.0 : 0.6043348133341302
+    2.0 < Thread use <= 3.0 : 0.25019492892667616
+    3.0 < Thread use <= 4.0 : 0.0
+    4.0 < Thread use : 0.0
+
+-------------------------- Disk1 ---------------------------
+
+- Utilisation
+
+Total mean:          0.523074538143552
+Interval low bound:  0.5154436166809574
+Interval high bound: 0.5307054596061466
+Interval half width: 0.0076309214625945865
+Accuracy ratio:      0.014588592841237499
+Mean variance:       7.553979629660638E-6
+Mean std deviation:  0.0027484504051666346
+
+-------------------------- Disk2 ---------------------------
+
+- Utilisation
+
+Total mean:          0.9260856746648486
+Interval low bound:  0.8482618669781378
+Interval high bound: 1.0039094823515593
+Interval half width: 0.07782380768671077
+Accuracy ratio:      0.08403521382066009
+Mean variance:       7.856819811858128E-4
+Mean std deviation:  0.028030019286219066
+

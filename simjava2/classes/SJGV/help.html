@@ -1,0 +1,105 @@
+<html>
+  <body bgcolor="#FFFFFF">
+    <font face="Arial">
+    <b><font size="+3">SimJava Graph Viewer Help</font></b>
+    <p>
+      <b><font size ="+1">Contents:</font></b>
+    </p>
+    <p>
+      &nbsp;-&nbsp;<a href="#0">Introduction</a><br>
+      &nbsp;-&nbsp;<a href="#1">The Viewer's components</a><br>
+      &nbsp;-&nbsp;<a href="#2">Selecting a graph</a><br>
+      &nbsp;-&nbsp;<a href="#3">Setting the graph's detail</a><br>
+      &nbsp;-&nbsp;<a href="#4">Making and viewing annotations</a><br>
+      &nbsp;-&nbsp;<a href="#5">Saving graphs</a><br>
+    </p>
+
+    <p><a name="0"></a><b><font size ="+1">Introduction</font></b></p>
+    <p>The SimJava Graph Viewer is a utility built to accompany the SimJava simulation
+      package. SimJava simulations may be set to produce graphical output in the form
+      of .sjg files. These files may be opened by the utility to display graphs for
+      all the measures calculated.</p>
+    <p><b><i>Note:</i></b> The plot displayed corresponds to the sample average at each point in time,
+      not the obtained observations.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+
+    <p><a name="1"></a><b><font size ="+1">The Viewer's components</font></b></p>
+    <p>The measure's graph is presented in the center. In the upper left corner the user is
+      presented with the entities and their measures as defined in the simulation.
+      In the case of an output analysis method having been used, this area also contains the
+      options referring to the information displayed in the adjacent area. This area, in the
+      upper right section, contains either the general run information or the total measurements
+      obtained for the measure currently on display. The
+      lower left section contains the graph's controls. These manage the graph's zoom as well as
+      the information that is displayed. This information ranges from displaying the graph's
+      annotations, to displaying a particular replication.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+
+    <p><a name="2"></a><b><font size ="+1">Selecting a graph</font></b></p>
+    <p>The graph displayed corresponds to a particular entity and measure. As mentioned previously,
+      the upper left section contains the list of entities and measures. The available entities
+      are those for which measures were defined in the simulation. Upon selecting an entity from
+      the list, the graph is automatically updated to display the first defined measure. Furthermore,
+      the full list of measures that were defined for the selected entity is made available to the
+      user. Selecting another entity leads to a similar update of the graph.</p>
+    <p>In the case that independent replications were used as an output analysis method or variance reduction
+      technique, additional graphs are available for each entity's measure. These graphs correspond to
+      the progress of the measure's sample average in each replication. The total number of replications
+      can be obtained from the panel displaying the general run information. The desired replication may
+      then be selected by the corresponding control in the lower left section.</p>
+    <p>In any case, the detail level that was selected via the graph controls is applied to the new graph.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+
+    <p><a name="3"></a><b><font size ="+1">Setting the graph's detail</font></b></p>
+    <p>As mentioned previously, the controls in the lower left section set the level of detail and the
+      information displayed by the graph. The controls available vary depending on the output analysis
+      method used in the simulation.</p>
+    <p>The first control is the zoom level. The viewer's graphs may be zoomed on the basis of time or on
+      the basis of the measure's values. Two input fields are present to enable the user to select the
+      appropriate zoom level for the time (X-axis) and the values (Y-axis). The selected zoom level is
+      applied by clicking the zoom button.</p>
+    <p>A series of checkboxes follows that represent additional information that may be viewed. The first
+      option is to display only the steady state period. In this case, the sample average plot presented
+      corresponds only to the observations obtained in steady state. The second option corresponds to
+      displaying or not the transient period. The third option displays the total mean obtained for the
+      measure. In the case of an output analysis method having been used, the total mean's confidence
+      interval is also presented.</p>
+    <p>At this point, additional options are present depending on the type of output analysis used. In the
+      case of batch means, the option to view the batches and their means is provided. Alternatively, when
+      independent replications have been used, the user is provided with the ability to view the measure's
+      progress in any replication. Furthermore, the option to view all the replications is available, in
+      which case the plots from all replications are presented in one graph using different colors. If
+      this option is selected the area containing sample measurements is used to present a legend of the
+      replications. Certain options are unavailable when viewing this combined graph such as viewing the
+      transient time or a graph's annotations.</p>
+    <p>A final option available in any case of output analysis is to turn the annotations on or off. If
+      selected, this option displays all the annotations that have been made for the currently selected
+      graph.</p>
+    <p>An additional option that is available is to view sample measurements up to a certain point in
+      time. To achieve this, the user left clicks on the graph at the desired point in time. The panel
+      displaying sample measurements is updated to display the measurements obtained up to the selected
+      time. To clear the graph of the current selection, the user clicks outside the graph's
+      bounds. By default, the sample measurements displayed cover the entire simulation run.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+
+    <p><a name="4"></a><b><font size ="+1">Making and viewing annotations</font></b></p>
+    <p>The SimJava Graph Viewer provides the user with the ability to make and view annotations. Such
+      functionality is particularly useful when commenting on a graph is necessary. In order to make an
+      annotation the user right clicks at a certain point of interest on the graph. A dialogue is
+      subsequently presented in which the user provides the annotation's text.</p>
+    <p>To view existing annotations, the user selects the corresponding option from the controls. Once
+      the annotations are presented, the user can left click on one in order to view and/or update its
+      text.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+
+    <p><a name="5"></a><b><font size ="+1">Saving graphs</font></b></p>
+    <p>Graphs may be stored for later inspection. To be precise, what is accomplished when
+      saving a graph is actually to store the annotations made. This is the case since the graph data
+      itself may not be altered. A graph is saved through the relevant options available in the "File" menu.</p>
+    <p>An option that is also available in the "File" menu is to save the current graph as an image. Using
+      this option, a graph may be stored as a GIF image in order to be placed in documents or published
+      online. The image will display all the information currently selected by the user.</p>
+    <p><a href="#"><img src="up.gif" border="0"></img></a></p>
+    </font>
+  </body>
+</html>

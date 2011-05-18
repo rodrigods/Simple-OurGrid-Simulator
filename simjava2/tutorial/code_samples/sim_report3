@@ -1,0 +1,68 @@
+############################################################
+#                                                          #
+#                    SIMULATION REPORT                     #
+#                                                          #
+############################################################
+
+Version: SimJava 2.0
+
+Simulation date:         July 15, 2002
+Simulation start time:   3:23:40 PM BST
+Simulation end time:     3:23:44 PM BST
+
+############################################################
+#            Overall simulation run information            #
+############################################################
+
+Total simulated time:    115643.84564314871
+Total transient time:    100013.10530339358
+Total steady state time: 15630.740339755139
+Transient condition:     100000.0 units of elapsed simulated time
+Termination condition:   100 event completions at Processor
+Output analysis method:  None
+
+############################################################
+#               Simulation run measurements                #
+############################################################
+
+------------------------ Processor -------------------------
+
+- Throughput
+
+Sample mean:          0.006397649620322881
+Event count:          100
+
+- Residence time
+
+Sample mean:          233.158804523008
+Sample variance:      21291.997985734848
+Sample std deviation: 145.91777816885389
+Maximum:              634.3598670618812
+Minimum:              84.1508121634688
+
+- Thread use
+
+Sample mean:          2.1852564082223194
+Sample variance:      0.4483668621402499
+Sample std deviation: 0.6696020177241477
+Maximum:              3.0
+Minimum:              1.0
+Exceedence proportions:
+      0.0 < Thread use <= 1.0 : 0.14871519535268285
+      1.0 < Thread use <= 2.0 : 0.517313201072315
+      2.0 < Thread use <= 3.0 : 0.3339716035750021
+      3.0 < Thread use <= 4.0 : 0.0
+      4.0 < Thread use : 0.0
+
+-------------------------- Disk1 ---------------------------
+
+- Utilisation
+
+Sample mean:          0.4896730624613626
+
+-------------------------- Disk2 ---------------------------
+
+- Utilisation
+
+Sample mean:          1.0
+
