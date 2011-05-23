@@ -1,7 +1,8 @@
 package simulator;
 
-import simulator.entities.Broker;
 import simulator.entities.Constants;
+import simulator.entities.LocalBroker;
+import simulator.entities.RemoteBroker;
 import simulator.entities.Worker;
 import eduni.simjava.Sim_stat;
 import eduni.simjava.Sim_system;
@@ -12,12 +13,14 @@ public class Main {
 		Sim_system.initialise();
 
 		//TODO get those configurations from a configuration
-		new Broker(Constants.BROKER, 60, 0.5, 100);
-		new Worker(Constants.WORKER, 5, 1, 2, 1);
+		new LocalBroker(Constants.LOCAL_BROKER, 60, 100);
+		new RemoteBroker(Constants.REMOTE_BROKER, 30, 100);
+		new Worker(Constants.WORKER, 5, 1, 2);
 	}
 	
 	private static void linkPorts() {
-		Sim_system.link_ports(Constants.BROKER, Constants.OUT_BROKER, Constants.WORKER, Constants.IN_WORKER);
+		Sim_system.link_ports(Constants.LOCAL_BROKER, Constants.OUT_LOCAL_BROKER, Constants.WORKER, Constants.IN_WORKER);
+		Sim_system.link_ports(Constants.REMOTE_BROKER, Constants.OUT_REMOTE_BROKER, Constants.WORKER, Constants.IN_WORKER);
 	}
 	
 	public static void main(String[] args) {

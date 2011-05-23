@@ -1,11 +1,7 @@
 package simulator.entities;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-
 import eduni.simjava.Sim_entity;
 import eduni.simjava.Sim_event;
+import eduni.simjava.Sim_from_p;
 import eduni.simjava.Sim_port;
 import eduni.simjava.Sim_stat;
 import eduni.simjava.Sim_system;
@@ -27,14 +23,14 @@ public class Worker extends Sim_entity {
 	private Sim_negexp_obj executionDelay;
 	private Sim_negexp_obj uploadDelay;
 	private Sim_stat stat; 
-	private int idleWorkers;
-	private List<BufferedEvent> bufferedEvents = new ArrayList<BufferedEvent>();
+//	private int idleWorkers;
+//	private List<BufferedEvent> bufferedEvents = new ArrayList<BufferedEvent>();
 	
 	
-	public Worker(String name, double meanDownload, double meanExecution, double meanUpload, int idleWorkers) {
+	public Worker(String name, double meanDownload, double meanExecution, double meanUpload) {
 		super(name);
 		
-		this.idleWorkers = idleWorkers;
+//		this.idleWorkers = idleWorkers;
 		
 		in = new Sim_port(Constants.IN_WORKER); //new jobs
 		add_port(in);
@@ -62,55 +58,42 @@ public class Worker extends Sim_entity {
 
 	public void body() {
 		//outputs
-		double executionsAverageTime = 0;
+		double localExecutionsAverageTime = 0;
+		double remoteExecutionsAverageTime = 0;
 		double localCompletedExecutions = 0;
 		double remoteCompletedExecutions = 0;
 		
 		while (Sim_system.running()) {
-			//verify if there is buffered events
-			BufferedEvent bufferedEvent = bufferedEvents.isEmpty() ? null : bufferedEvents.remove(0);
-			Sim_event e = null;
+			Sim_event e = new Sim_event();
+			sim_select(new Sim_from_p(Sim_system.get_entity_id(Constants.LOCAL_BROKER)), e); //priority to local brokers
 			
-			if (bufferedEvent == null) {
-				e = new Sim_event();
+			if (e.get_tag() == -1) { //means that there is not a local job
 				sim_get_next(e);
-			} else {
-				e = bufferedEvent.getEvent();
 			}
 			
-			if (idleWorkers > 0) {
-				idleWorkers--; //the worker will be allocated
-				double before = Sim_system.clock();
-				
-				sim_pause(downloadDelay.sample()); //download delay
-				sim_process(executionDelay.sample()); //execution delay
-				sim_pause(uploadDelay.sample()); //upload delay
-				
-				//XXX is the same? sim_process(downloadDelay.sample() + executionDelay.sample() + uploadDelay.sample()); 
-				
-				//end the process
-				sim_completed(e);
-				idleWorkers++; //the worker completed the job, go to idle again
-				
-				if (e.get_tag() == Constants.LOCAL) {
-					localCompletedExecutions++;
-				} else {
-					remoteCompletedExecutions++;
-				}
-				
-				double now = Sim_system.clock();
-				
-				if (bufferedEvent == null) {
-					executionsAverageTime += now - before;
-				} else {
-					executionsAverageTime += (now - before) + (now - bufferedEvent.getTimeStamp());
-				}
+			double time = Sim_system.clock();
+			Job job = (Job) e.get_data();
+			
+			if (job == null) continue;
+			
+			job.setExecutionTime(time);
+			
+			sim_pause(downloadDelay.sample()); //download delay
+			sim_process(executionDelay.sample()); //execution delay
+			sim_pause(uploadDelay.sample()); //upload delay
+			
+			//end the process
+			sim_completed(e);
+			
+			double now = Sim_system.clock();
+
+			if (e.get_tag() == Constants.LOCAL) {
+				localCompletedExecutions++;
+				localExecutionsAverageTime += (job.getExecutionTime() - job.getCreationTime()) + (now - time);
 			} else {
-				bufferedEvents.add(new BufferedEvent(e, Sim_system.clock()));
+				remoteCompletedExecutions++;
+				remoteExecutionsAverageTime += (job.getExecutionTime() - job.getCreationTime()) + (now - time);
 			}
-			
-			sortBufferedEvents();
-			
 		}
 
 		System.out.println();
@@ -118,26 +101,16 @@ public class Worker extends Sim_entity {
 		System.out.println("Total completed executions: " + ((int) localCompletedExecutions + (int) remoteCompletedExecutions));
 		System.out.println("Local completed executions: " + (int) localCompletedExecutions);
 		System.out.println("Remote completed executions: " + (int) remoteCompletedExecutions);
-		System.out.println("Executions average time: " + executionsAverageTime/(localCompletedExecutions + remoteCompletedExecutions));
+		System.out.println("Executions average time: " + (localExecutionsAverageTime + remoteExecutionsAverageTime)/
+				(localCompletedExecutions + remoteCompletedExecutions) + " seconds");
+		System.out.println("Local executions average time: " + localExecutionsAverageTime/localCompletedExecutions + " seconds");
+		System.out.println("Remote executions average time: " + remoteExecutionsAverageTime/remoteCompletedExecutions + " seconds");
 		System.out.println();
 		
 		//reset the parameters
+		localExecutionsAverageTime = 0;
+		remoteExecutionsAverageTime = 0;
 		localCompletedExecutions = 0;
 		remoteCompletedExecutions = 0;
-		executionsAverageTime = 0;
-	}
-	
-	private void sortBufferedEvents() {
-		//sort incoming events by priority, incoming events by local brokers has higher priorities
-		Collections.sort(bufferedEvents, new Comparator<BufferedEvent>() {
-			@Override
-			public int compare(BufferedEvent o1, BufferedEvent o2) {
-				if (o1.getEvent().get_tag() == Constants.LOCAL) {
-					return o2.getEvent().get_tag() == Constants.LOCAL ? 0 : -1;
-				}
-				
-				return o2.getEvent().get_tag() == Constants.REMOTE ? 0 : 1;
-			}
-		});
 	}
 }
