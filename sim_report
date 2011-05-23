@@ -1,0 +1,77 @@
+############################################################
+#                                                          #
+#                    SIMULATION REPORT                     #
+#                                                          #
+############################################################
+
+Version: SimJava 2.0
+
+Simulation date:         May 22, 2011
+Simulation start time:   10:47:46 PM BRT
+Simulation end time:     10:47:47 PM BRT
+
+############################################################
+#            Overall simulation run information            #
+############################################################
+
+Total simulated time:    209922.23571205535
+Total transient time:    37291.09688450835
+Total steady state time: 172631.138827547
+Transient condition:     1000.0 units of elapsed simulated time
+Termination condition:   Confidence interval accuracy for Utilisation of WORKER
+Output analysis method:  Independent replications
+Confidence level:        0.9
+Replications performed:  35
+
+############################################################
+#       Total measurements and confidence intervals        #
+############################################################
+
+-------------------------- WORKER --------------------------
+
+- Utilisation
+
+Total mean:          0.01704465343279383
+Interval low bound:  0.016223565835611842
+Interval high bound: 0.017865741029975814
+Interval half width: 8.21087597181986E-4
+Accuracy ratio:      0.048172736419633946
+Mean variance:       2.3579287390675837E-7
+Mean std deviation:  4.8558508410654293E-4
+
+- Service time
+
+Total mean:          8.087294743050567
+Interval low bound:  7.9546944559996575
+Interval high bound: 8.219895030101476
+Interval half width: 0.13260028705090932
+Accuracy ratio:      0.01639612395292662
+Mean variance:       0.0061495115312365555
+Mean std deviation:  0.07841882128186163
+Total maximum:       48.69986760991833
+Total minimum:       0.23541839547033305
+
+- Queue length
+
+Total mean:          0.014246314151696051
+Interval low bound:  0.01207156193900185
+Interval high bound: 0.016421066364390252
+Interval half width: 0.002174752212694201
+Accuracy ratio:      0.1526536751567628
+Mean variance:       1.6541361560355238E-6
+Mean std deviation:  0.0012861322467131924
+Total maximum:       3.0
+Total minimum:       0.0
+
+- Waiting time
+
+Total mean:          0.8261170593542482
+Interval low bound:  0.7126278134239354
+Interval high bound: 0.9396063052845609
+Interval half width: 0.11348924593031273
+Accuracy ratio:      0.13737671271311602
+Mean variance:       0.004504650617249804
+Mean std deviation:  0.06711669402801217
+Total maximum:       41.5876659739024
+Total minimum:       0.0
+
